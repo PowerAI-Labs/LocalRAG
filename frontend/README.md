@@ -1,4 +1,4 @@
-# Enhanced RAG Application - Frontend
+# Local Enhanced RAG Application - Frontend
 
 This repository contains the React-based frontend for an Enhanced Retrieval-Augmented Generation (RAG) application, designed to work with the RAG backend API.
 
@@ -46,8 +46,8 @@ src/
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/raglab.git
-   cd raglab
+   git clone https://github.com/yourusername/localrag.git
+   cd localrag
    ```
 
 2. Install dependencies

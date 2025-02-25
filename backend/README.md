@@ -1,4 +1,4 @@
-# Enhanced RAG Application - Backend
+# Local Enhanced RAG Application - Backend
 
 This repository contains the backend for an Enhanced Retrieval-Augmented Generation (RAG) application that supports multiple document types and advanced search capabilities.
 
@@ -57,8 +57,8 @@ app/
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/raglab.git
-   cd raglab
+   git clone https://github.com/yourusername/localrag.git
+   cd localrag
    ```
 
 2. Create and activate a virtual environment

@@ -1,10 +1,10 @@
-# RAGLab
+# Local RAG
 
 A fully local AI-powered document processing and search system.
 
-RAGLab is a robust Retrieval-Augmented Generation (RAG) application that uses Ollama local models and FAISS for efficient document processing and semantic search capabilities.
+Local RAG is a robust Retrieval-Augmented Generation (RAG) application that uses Ollama local models and FAISS for efficient document processing and semantic search capabilities.
 
-![RAGLab Screenshot](image.png)
+![RAG Screenshot](image.png)
 
 **[👉 Watch the full demo video on YouTube](https://youtu.be/V4CvTF1M_-8)**
 
@@ -60,8 +60,8 @@ This application provides an enhanced RAG implementation with the following key 
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/raglab.git
-   cd raglab
+   git clone https://github.com/yourusername/localrag.git
+   cd localrag
    ```
 
 #### Backend Setup
