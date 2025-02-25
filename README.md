@@ -6,6 +6,10 @@ RAGLab is a robust Retrieval-Augmented Generation (RAG) application that uses Ol
 
 ![alt text](image.png)
 
+## Demo Video
+
+https://youtu.be/V4CvTF1M_-8
+
 ## Overview
 
 This application provides an enhanced RAG implementation with the following key features:
