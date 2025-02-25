@@ -4,11 +4,8 @@ A fully local AI-powered document processing and search system.
 
 RAGLab is a robust Retrieval-Augmented Generation (RAG) application that uses Ollama local models and FAISS for efficient document processing and semantic search capabilities.
 
-![alt text](image.png)
-
-## Demo Video
-
-https://youtu.be/V4CvTF1M_-8
+[![RAGLab Demo Video](https://img.youtube.com/vi/V4CvTF1M_-8/0.jpg)](https://youtu.be/V4CvTF1M_-8)
+*Click the image above to watch the demo video*
 
 ## Overview
 
@@ -56,7 +53,7 @@ This application provides an enhanced RAG implementation with the following key 
 - **CPU**: 4+ cores recommended for faster processing
 - **RAM**: Minimum 8GB, 16GB+ recommended for large documents
 - **Storage**: 10GB+ free space for application and models
-- **GPU**: Optional but recommended for faster model inference
+- **GPU**: Required, at least 4GB dedicated GPU RAM for model inference
 
 ## Quick Start
 
@@ -117,7 +114,6 @@ This application requires Ollama for running LLM models locally:
 2. Pull the required models:
    ```bash
    ollama pull deepseek-r1:8b
-   ollama pull phi-4
    ```
 
 3. Ensure Ollama is running before starting the application
