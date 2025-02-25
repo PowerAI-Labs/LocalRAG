@@ -88,7 +88,7 @@ app/
 
 1. Start the backend server
    ```bash
-   python -m app.main
+   python main.py
    ```
 
 2. The server will start at `http://127.0.0.1:8000`

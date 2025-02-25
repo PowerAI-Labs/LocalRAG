@@ -84,7 +84,7 @@ This application provides an enhanced RAG implementation with the following key 
 
 4. Start the backend server
    ```bash
-   python -m app.main
+   python main.py
    ```
 
 #### Frontend Setup
