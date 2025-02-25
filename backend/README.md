@@ -177,4 +177,4 @@ print(response.json())
 
 ## License
 
-[MIT License](LICENSE)
+[MIT License](/LICENSE)

@@ -187,4 +187,4 @@ const [settings, setSettings] = useState({
 
 ## License
 
-[MIT License](LICENSE)
+[MIT License](/LICENSE)
