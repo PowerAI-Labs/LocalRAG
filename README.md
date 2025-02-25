@@ -4,9 +4,9 @@ A fully local AI-powered document processing and search system.
 
 RAGLab is a robust Retrieval-Augmented Generation (RAG) application that uses Ollama local models and FAISS for efficient document processing and semantic search capabilities.
 
-[![RAGLab Demo Video](![alt text](image.png))](https://youtu.be/V4CvTF1M_-8)
+![RAGLab Screenshot](image.png)
 
-*Click the image above to watch the demo video*
+**[👉 Watch the full demo video on YouTube](https://youtu.be/V4CvTF1M_-8)**
 
 ## Overview
 
