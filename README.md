@@ -1,5 +1,5 @@
-# Enhanced RAG Application
-
+# RAGLab Enhanced RAG Application
+A fully local AI-powered document processing and search system.
 A robust Retrieval-Augmented Generation (RAG) application that uses Ollama local models and FAISS for efficient document processing and semantic search capabilities.
 
 ## Overview
