@@ -1,192 +1,189 @@
-# RAGLab Enhanced RAG Application
+# RAGLab
+
 A fully local AI-powered document processing and search system.
-A robust Retrieval-Augmented Generation (RAG) application that uses Ollama local models and FAISS for efficient document processing and semantic search capabilities.
+
+RAGLab is a robust Retrieval-Augmented Generation (RAG) application that uses Ollama local models and FAISS for efficient document processing and semantic search capabilities.
+
+![alt text](image.png)
 
 ## Overview
 
 This application provides an enhanced RAG implementation with the following key features:
 
-- Multi-format document processing (PDF, DOCX, CSV, Excel, XML, Images)
-- Semantic search with content-type awareness
-- Batch processing for large files
-- Rate limiting and error handling
-- Automatic backup and recovery
-- Enhanced query expansion and results reranking
-- Faceted search capabilities
-- OCR support for images
-- Progress tracking and webhook notifications
+- **Multi-format document processing**: Support for PDF, DOCX, CSV, Excel, XML, and images
+- **Semantic search with content-type awareness**: Intelligent document understanding
+- **Batch processing for large files**: Handle big documents and multiple files efficiently
+- **Rate limiting and error handling**: Reliable API performance
+- **Automatic backup and recovery**: Data integrity protection
+- **Enhanced query expansion and results reranking**: Better search results
+- **Faceted search capabilities**: Filter and navigate search results
+- **OCR support for images**: Extract text from images and PDFs
+- **Progress tracking and webhook notifications**: Monitor long-running tasks
 
 ## Project Structure
 
 ```
-rag-application/
-├── backend/
-│   ├── app/
-│   │   ├── api/              # API endpoints and models
-│   │   ├── core/             # Core settings and logging
-│   │   ├── prompts/          # Prompt handling
-│   │   ├── services/         # Core services (RAG, Ollama, etc.)
-│   │   └── utils/            # Helper utilities
-│   ├── data/                 # Data storage
-│   └── tests/                # Test files
-└── frontend/                 # Frontend React application
+/
+├── backend/                 # Python FastAPI backend
+│   ├── app/                 # Main application package
+│   │   ├── api/             # API endpoints and models
+│   │   ├── core/            # Core settings and logging
+│   │   ├── prompts/         # LLM prompt templates
+│   │   ├── services/        # Business logic services
+│   │   └── utils/           # Utility functions
+│   ├── data/                # Data storage directory
+│   └── requirements.txt     # Python dependencies
+│
+├── frontend/                # React.js frontend
+│   ├── public/              # Public assets
+│   ├── src/                 # Source code
+│   │   ├── components/      # React components
+│   │   ├── contexts/        # React contexts
+│   │   └── styles/          # CSS and styling
+│   └── package.json         # JavaScript dependencies
+│
+├── .gitignore              # Git ignore file
+└── README.md                # This file
 ```
 
-## Requirements
+## System Requirements
 
-- Python 3.8+
-- FastAPI
-- Ollama
-- FAISS
-- Sentence Transformers
-- PyTesseract (for OCR)
-- PyMuPDF
-- python-docx
-- pandas
-- numpy
-- Pillow
+- **OS**: Windows 10/11, macOS, or Linux
+- **CPU**: 4+ cores recommended for faster processing
+- **RAM**: Minimum 8GB, 16GB+ recommended for large documents
+- **Storage**: 10GB+ free space for application and models
+- **GPU**: Optional but recommended for faster model inference
 
-## Installation
+## Quick Start
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/rag-application.git
-cd rag-application
-```
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/raglab.git
+   cd raglab
+   ```
 
-2. Install Python dependencies:
-```bash
-pip install -r requirements.txt
-```
+#### Backend Setup
 
-3. Install Ollama (if not already installed):
-```bash
-# For Linux/macOS
-curl https://ollama.ai/install.sh | sh
+1. Navigate to the backend directory
+   ```bash
+   cd backend
+   ```
 
-# For Windows
-# Download from https://ollama.ai/download
-```
+2. Create and activate a virtual environment
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-4. Install Tesseract for OCR support:
-```bash
-# Ubuntu/Debian
-sudo apt-get install tesseract-ocr
+3. Install required packages
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# macOS
-brew install tesseract
+4. Start the backend server
+   ```bash
+   python -m app.main
+   ```
 
-# Windows
-# Download installer from https://github.com/UB-Mannheim/tesseract/wiki
-```
+#### Frontend Setup
 
-5. Set up environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
+1. Navigate to the frontend directory
+   ```bash
+   cd frontend
+   ```
 
-## Configuration
+2. Install dependencies
+   ```bash
+   npm install
+   ```
 
-The application can be configured through `config.py` in the core module. Key settings include:
+3. Start the frontend development server
+   ```bash
+   npm start
+   ```
 
-- `OLLAMA_API_URL`: URL for Ollama API (default: "http://localhost:11434")
-- `TEXT_EMBEDDING_MODEL`: Model for text embeddings
-- `IMAGE_EMBEDDING_MODEL`: Model for image embeddings
-- `CHUNK_SIZE`: Size of text chunks for processing
-- `BATCH_PROCESSING_SIZE_THRESHOLD`: Threshold for batch processing
-- `RATE_LIMIT_MAX_REQUESTS`: Rate limiting settings
+4. Open your browser and navigate to http://localhost:3000
 
-## Usage
+## Ollama Setup
 
-1. Start the Ollama service:
-```bash
-ollama run deepseek-r1:8b
-```
+This application requires Ollama for running LLM models locally:
 
-2. Start the backend server:
-```bash
-cd backend
-python main.py
-```
+1. Install Ollama from [https://ollama.ai/](https://ollama.ai/)
 
-3. The API will be available at `http://localhost:8000`
+2. Pull the required models:
+   ```bash
+   ollama pull deepseek-r1:8b
+   ollama pull phi-4
+   ```
 
-### API Endpoints
+3. Ensure Ollama is running before starting the application
 
-- `POST /upload`: Upload and process documents
-- `POST /query`: Query processed documents
-- `POST /enhanced-search`: Advanced search with filters and facets
-- `POST /api/v1/batch`: Batch processing endpoints
-- `GET /health`: Health check endpoint
+## Usage Examples
+
+### Document Processing Workflow
+
+1. **Upload Documents**: Use the file upload in the sidebar to add documents
+2. **Preview Content**: Click on files to preview their content
+3. **Ask Questions**: Use the chat interface to ask questions about your documents
+4. **View Results**: Get AI-generated answers with references to source material
+
+### Enhanced Search Options
+
+1. Toggle "Enhanced Search" mode for more powerful search capabilities
+2. Use natural language to find information across all your documents
+3. View faceted search results with filters and highlights
+4. Get semantically relevant results even with different terminology
 
 ### Batch Processing
 
-For large files or bulk processing:
+1. Toggle "Batch Mode" when uploading large or multiple files
+2. Monitor progress through the batch processing interface
+3. Receive notifications when batch processing completes
+4. Access processed documents directly from the interface
 
-```python
-batch_request = {
-    "files": ["file1.pdf", "file2.docx"],
-    "settings": {
-        "chunk_size": 1000,
-        "chunk_overlap": 200,
-        "ocr_enabled": true
-    }
-}
-response = requests.post("http://localhost:8000/api/v1/batch", json=batch_request)
-```
+## Configuration
 
-## Features
+### Backend Configuration
 
-### Document Processing
-- PDF processing with text and image extraction
-- DOCX processing with formatting preservation
-- CSV/Excel processing with structure preservation
-- Image processing with OCR
-- XML processing with structure awareness
+Key backend settings can be adjusted in `backend/app/core/config.py`:
 
-### Search Capabilities
-- Semantic search using embeddings
-- Fuzzy matching for approximate searches
-- Query expansion for better results
-- Faceted search with filtering
-- Result highlighting
-- Sorting and pagination
+- `OLLAMA_API_URL`: URL for the Ollama API
+- `TEXT_EMBEDDING_MODEL`: Model for text embeddings
+- `CHUNK_SIZE`: Size of text chunks for processing
+- `RATE_LIMIT_MAX_REQUESTS`: Rate limiting settings
 
-### Enhanced Features
-- Automatic backup and recovery
-- Progress tracking for batch operations
-- Webhook notifications
-- Rate limiting
-- Error handling and logging
-- Data validation
+### Frontend Configuration
 
-## Testing
+Frontend settings can be adjusted through the settings interface or directly in `frontend/src/App.js`:
 
-Run the test suite:
-```bash
-pytest tests/
-```
+- Ollama API endpoint
+- Model parameters
+- UI preferences
+- Search behavior
 
-For enhanced search testing:
-```bash
-python tests/test_enhanced_search.py
-```
+## Documentation
+
+- [Backend API Documentation](backend/README.md)
+- [Frontend Documentation](frontend/README.md)
 
 ## Contributing
 
+Contributions are welcome! Please feel free to submit a Pull Request.
+
 1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-MIT License - see LICENSE file for details
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
 
-- [Ollama](https://ollama.ai/) for the local LLM support
+- [Ollama](https://ollama.ai/) for providing local LLM capabilities
+- [FastAPI](https://fastapi.tiangolo.com/) for the backend framework
+- [React](https://reactjs.org/) for the frontend framework
 - [FAISS](https://github.com/facebookresearch/faiss) for efficient similarity search
-- [FastAPI](https://fastapi.tiangolo.com/) for the web framework
+- [Sentence Transformers](https://www.sbert.net/) for text embeddings

@@ -1,70 +1,190 @@
-# Getting Started with Create React App
+# Enhanced RAG Application - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the React-based frontend for an Enhanced Retrieval-Augmented Generation (RAG) application, designed to work with the RAG backend API.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Multi-format document support**: Preview PDF, DOCX, CSV, Excel, XML, and images
+- **Intelligent chat interface**: Context-aware conversation
+- **Enhanced search modes**: Choose between basic and enhanced search
+- **Batch processing UI**: Process multiple files efficiently
+- **Dark/Light mode**: User-friendly theme switching
+- **Settings management**: Configure API and model parameters
+- **File management sidebar**: Upload, preview, and manage documents
+- **Interactive previews**: Preview documents with toggleable visibility
+- **Progress tracking**: Track batch processing operations
+- **Context management**: Clear and manage document context
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+src/
+├── App.js                # Main application component
+├── Settings.js           # Settings modal component
+├── index.js              # Application entry point
+├── contexts/             # React contexts
+│   └── ThemeContext.js   # Theme management context
+├── components/           # UI components
+│   ├── FileCard.js       # File representation component
+│   ├── Message.js        # Chat message component
+│   └── ...               # Other components
+├── utils/                # Utility functions
+└── styles/               # CSS styles
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technology Stack
 
-### `npm test`
+- **React**: Frontend framework
+- **Tailwind CSS**: Styling
+- **Lucide React**: Icons
+- **PapaParse**: CSV parsing
+- **SheetJS**: Excel file handling
+- **fast-xml-parser**: XML parsing
+- **Local Storage API**: Settings persistence
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup and Installation
 
-### `npm run build`
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/raglab.git
+   cd raglab
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Configure the backend API endpoint
+   - Open `src/App.js`
+   - Set the backend URL (defaults to `http://localhost:8000`)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Start the development server
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+5. The application will be available at `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage Guide
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Main Interface
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The interface consists of three main areas:
+1. **Left Sidebar**: File management
+2. **Main Area**: Chat interface
+3. **Bottom Bar**: Input and settings
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### File Management
 
-## Learn More
+- **Upload Files**: Click "Choose Files" to upload documents
+- **File Preview**: Click on a file to preview its content
+- **Remove File**: Click the X button to remove a file
+- **Toggle Preview**: Use the eye icon to show/hide previews
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Chat Interface
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Send Message**: Type in the input field and press Enter or click Send
+- **View Responses**: AI responses appear in the chat
+- **Enhanced Search**: Toggle between Basic and Enhanced search modes
+- **Model Selection**: Choose different LLM models from the dropdown
 
-### Code Splitting
+### Batch Processing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Toggle Batch Mode**: Switch between Standard and Batch processing
+- **Submit Batch**: Upload files for batch processing
+- **Track Progress**: View progress indicators for batch operations
+- **Cancel Batch**: Cancel ongoing batch operations
 
-### Analyzing the Bundle Size
+### Settings
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Access settings by clicking the gear icon:
 
-### Making a Progressive Web App
+- **Ollama API Endpoint**: Configure the Ollama API URL
+- **Model Parameters**: Adjust temperature, context window, etc.
+- **Context Management**: Clear loaded documents
+- **Available Models**: View models available through Ollama
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Supported File Types
 
-### Advanced Configuration
+| File Type | Extensions | Features |
+|-----------|------------|----------|
+| PDF | .pdf | Full preview, page navigation |
+| Word | .docx | Text preview |
+| Plain Text | .txt | Full text preview |
+| Images | .jpg, .jpeg, .png, .gif, .bmp, .webp, .svg | Full preview |
+| Spreadsheets | .csv, .xlsx, .xls | Table preview, sheet navigation |
+| XML | .xml | Structure view, raw XML viewing |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Key Components
 
-### Deployment
+### 1. File Preview Components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The application includes specialized preview components for different file types:
 
-### `npm run build` fails to minify
+- `PDFPreview`: Shows PDF documents with native browser rendering
+- `WordPreview`: Extracts and displays text from DOCX files
+- `TextPreview`: Displays plain text files
+- `ImagePreview`: Shows images with responsive scaling
+- `SpreadsheetPreview`: Displays CSV/Excel files in tabular format
+- `XMLPreview`: Shows formatted XML structure and raw content
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 2. Messaging System
+
+The messaging system handles:
+- User messages
+- AI responses
+- Thinking indicators
+- Enhanced search results formatting
+- Error handling
+
+### 3. Settings Management
+
+The Settings component allows configuration of:
+- API endpoints
+- Model parameters
+- Context window size
+- Response temperature
+- Top-P sampling
+
+### 4. Batch Processing UI
+
+The batch processing interface provides:
+- Batch job submission
+- Progress tracking
+- Job cancellation
+- Status updates
+
+## Customization
+
+### Theme Customization
+
+The application uses Tailwind CSS with a customizable dark/light theme system:
+
+```jsx
+// Example of customizing theme colors
+const bgColors = isDark ? {
+  user: 'bg-[#2563eb]',
+  assistant: 'bg-[#1f2024]',
+  // Add custom colors here
+} : {
+  user: 'bg-blue-500',
+  assistant: 'bg-white',
+  // Add custom colors here
+};
+```
+
+### API Configuration
+
+Modify the API endpoint in the Settings component:
+
+```jsx
+const [settings, setSettings] = useState({
+  ollamaAPI: localStorage.getItem('ollamaAPI') || 'http://your-api-url:11434',
+  // Other settings
+});
+```
+
+## License
+
+[MIT License](LICENSE)
