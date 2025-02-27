@@ -316,6 +316,9 @@ class BatchProcessor:
             # Add chunks to RAG engine
             logger.debug("Adding chunks to RAG engine")
             await self.rag_engine.add_chunks(chunks)
+
+            # Save the updated chunks and indices
+            await self.rag_engine._save_data()
             
             # Just update metadata status, don't increment counter
             file_metadata.status = BatchStatus.COMPLETED

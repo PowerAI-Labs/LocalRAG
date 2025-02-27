@@ -4,6 +4,8 @@ A fully local AI-powered document processing and search system.
 
 Local RAG is a robust Retrieval-Augmented Generation (RAG) application that uses Ollama local models and FAISS for efficient document processing and semantic search capabilities.
 
+⚠️ **Disclaimer:** This project is still a work in progress. While functional, some features may not be fully refined, and errors may occur. Contributions and feedback are welcome!
+
 ![RAG Screenshot](image.png)
 
 **[👉 Watch the full demo video on YouTube](https://youtu.be/V4CvTF1M_-8)**

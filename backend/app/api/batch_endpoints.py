@@ -23,7 +23,7 @@ router = APIRouter(prefix="/api/v1/batch", tags=["batch"])
 from fastapi import Depends
 from ..services.batch_processor import BatchProcessor
 from ..services.rag_engine import EnhancedRAGEngine
-
+from ..services.shared import get_rag_engine
 # Global instances
 _rag_engine = None
 _batch_processor = None
@@ -31,21 +31,25 @@ _batch_processor = None
 def get_batch_processor() -> BatchProcessor:
     """
     Dependency to get batch processor instance.
-    Creates a single shared RAG engine and BatchProcessor.
+    Uses the shared RAG engine with existing singleton pattern.
     """
-    global _rag_engine, _batch_processor
+    global _batch_processor
     
     try:
         if _batch_processor is None:
-            # Initialize RAG engine if not exists
-            if _rag_engine is None:
-                logger.info("Creating shared RAG engine instance")
-                _rag_engine = EnhancedRAGEngine()
-                logger.info("RAG engine initialized successfully")
+            # Get the shared RAG engine instance
+            from ..services.shared import get_rag_engine
+            shared_rag_engine = get_rag_engine()
             
-            # Create single BatchProcessor instance
-            logger.info("Creating shared BatchProcessor instance")
-            _batch_processor = BatchProcessor(_rag_engine)
+            # Log the RAG engine's ID for debugging
+            logger.info(f"Using shared RAG engine with ID: {id(shared_rag_engine)} for batch processing")
+            logger.info(f"Shared RAG engine has {len(shared_rag_engine.chunks)} chunks loaded")
+            
+            # Create BatchProcessor instance with the shared engine
+            # The BatchProcessor class will handle its own singleton pattern
+            # based on the RAG engine instance
+            logger.info("Creating BatchProcessor instance")
+            _batch_processor = BatchProcessor(shared_rag_engine)
             
         return _batch_processor
         

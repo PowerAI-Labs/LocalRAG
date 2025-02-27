@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Save } from 'lucide-react';
 
-const Settings = ({ isOpen, onClose, onSave, hasContexts, onClearContext}) => {
+const Settings = ({ isOpen, onClose, onSave, hasContext, onClearContext}) => {
   // Retrieve saved settings from localStorage with default values
   const [settings, setSettings] = useState({
     ollamaAPI: localStorage.getItem('ollamaAPI') || 'http://localhost:11434',
@@ -20,6 +20,10 @@ const Settings = ({ isOpen, onClose, onSave, hasContexts, onClearContext}) => {
       fetchAvailableModels();
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    console.log("Settings received hasContext prop:", hasContext);
+  }, [hasContext]);
 
   const fetchAvailableModels = async () => {
     try {
@@ -205,16 +209,16 @@ const Settings = ({ isOpen, onClose, onSave, hasContexts, onClearContext}) => {
              
         <div className="mt-6 flex justify-between items-center">
         <button
-            onClick={onClearContext}
-            disabled={!hasContexts}
-            className={`px-4 py-2 rounded-lg transition-colors text-sm ${
-              hasContexts 
-                ? 'bg-white hover:bg-red-100 text-gray-700 shadow-sm' 
-                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            }`}
-          >
-            {hasContexts ? 'Clear Context' : 'No Context Available'}
-          </button>
+          onClick={onClearContext}
+          disabled={!hasContext}
+          className={`px-4 py-2 rounded-lg transition-colors text-sm ${
+            hasContext 
+              ? 'bg-white hover:bg-red-100 text-gray-700 shadow-sm' 
+              : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+          }`}
+        >
+          {hasContext ? 'Clear Context' : `No Context Available`}
+        </button>
           <button
             onClick={handleSave}
             className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"

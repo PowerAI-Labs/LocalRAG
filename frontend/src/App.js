@@ -881,10 +881,15 @@ const App = () => {
       const response = await fetch('http://localhost:8000/context-status');
       if (response.ok) {
         const data = await response.json();
-        if (data.total_chunks > 0) {
-          setHasContext(true);
-        }
+        console.log("Context status API response:", data);
         
+        if (data.total_chunks > 0) {
+          console.log("Setting hasContext to TRUE");
+          setHasContext(true);
+        } else {
+          console.log("Setting hasContext to FALSE - no chunks");
+          setHasContext(false);
+        }
       }
     } catch (error) {
       console.error('Error checking context status:', error);
@@ -1110,6 +1115,11 @@ const clearContext = async () => {
   }
 };
 
+const openSettings = async () => {
+  await checkContextStatus(); // Refresh context status first
+  setIsSettingsOpen(true);
+};
+
 // Settings save handler
 const handleSettingsSave = (newSettings) => {
   setSettings(newSettings);
@@ -1278,7 +1288,7 @@ const handleSettingsSave = (newSettings) => {
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <button
-            onClick={() => setIsSettingsOpen(true)}
+            onClick={openSettings}  // Use this instead of directly setting isSettingsOpen
             className={`p-2 rounded-lg transition-colors ${
               isDark 
                 ? 'bg-[#2c2d31] hover:bg-[#34353a] text-gray-300' 
@@ -1461,7 +1471,7 @@ const handleSettingsSave = (newSettings) => {
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
         onSave={handleSettingsSave}
-        hasContexts={hasContext}
+        hasContext={hasContext}
         onClearContext={clearContext}
       />
       </div>

@@ -1,13 +1,13 @@
 {
-  "total_chunks": 642,
+  "total_chunks": 84,
   "chunk_types": {
-    "text": 563,
-    "image": 79
+    "text": 76,
+    "image": 8
   },
   "content_types": {
-    "text": 563,
-    "image": 79
+    "text": 76,
+    "image": 8
   },
-  "timestamp": "2025-02-25T11:11:19.609567",
+  "timestamp": "2025-02-28T00:22:29.227606",
   "version": "1.0.0"
 }

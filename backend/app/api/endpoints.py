@@ -9,7 +9,7 @@ from collections import defaultdict
 from uuid import uuid4
 import logging
 from ..core import settings, logger
-from ..services import EnhancedRAGEngine, query_ollama, BatchProcessor
+from ..services import query_ollama, BatchProcessor
 from ..utils.helpers import read_file_content, validate_file_size
 from ..prompts import PromptHandler
 from .models import Query
@@ -20,7 +20,7 @@ from ..api.models import DocumentChunk, Query, SearchFilters, SortOptions, Enhan
 from ..core import settings, logger
 from .batch_endpoints import router as batch_router
 from fastapi import BackgroundTasks  # Add this to your imports
-
+from ..services.shared import get_rag_engine
 # Initialize FastAPI app
 app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -34,7 +34,7 @@ app.add_middleware(
 )
 
 # Initialize RAG engine and prompt handler
-rag_engine = EnhancedRAGEngine()
+rag_engine = get_rag_engine()
 prompt_handler = PromptHandler()
 
 # Add batch router here
